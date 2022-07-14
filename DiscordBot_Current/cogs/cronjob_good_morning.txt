@@ -1,0 +1,31 @@
+import discord
+from discord.ext import commands
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.cron import CronTrigger
+
+CHANNEL_ID=963059358118346806
+
+class good_morning(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        # self.schedule.start()
+    
+    async def func(self):
+        c = self.bot.get_channel(CHANNEL_ID)
+        await c.send("goood moorning")
+
+
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+
+
+                #initializing scheduler
+        scheduler = AsyncIOScheduler()
+
+
+        scheduler.add_job(self.func, CronTrigger.from_crontab("* * * * *")) 
+        scheduler.start()
+
+async def setup(bot):
+    await bot.add_cog(good_morning(bot))

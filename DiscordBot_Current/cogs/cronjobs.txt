@@ -1,0 +1,34 @@
+import discord
+from discord.ext import commands
+import aiocron
+
+
+CHANNEL_ID=963059358118346806
+
+class cronjobs(commands.Cog):
+    
+    def __init__(self, bot):
+        self.bot = bot
+
+
+    # @aiocron.crontab('30 09 * * 5') # 1 hour behind
+    # async def cronjob1(self):
+    #     role = "<@&992397131904192553>"
+    #     channel = await self.bot.get_channel(CHANNEL_ID)
+    #     reaction_thumbs_up = '👍'
+    #     time_sheets = await channel.send(f"Time sheets {role}!")
+    #     await time_sheets.add_reaction(reaction_thumbs_up)
+
+    @aiocron.crontab('* * * * *') # 1 hour behind
+    async def cronjob2(self):
+        await self.bot.get_channel(CHANNEL_ID).send("Goooood moooooooorning!!!! How are we doing guys?")
+
+    @commands.Cog.listener()
+    async def on_ready(self):#
+        await self.bot.wait_until_ready()
+        self.cronjob2.start()
+
+    
+
+async def setup(bot):
+    await bot.add_cog(cronjobs(bot))

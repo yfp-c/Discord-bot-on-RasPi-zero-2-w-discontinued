@@ -46,10 +46,13 @@ sudo crontab -e
 # reboots at 07:59 / 7:59am 
 ```
 ### Discord bot features:
-- Custom status
-- Retrieve quotes from api [source link](https://www.freecodecamp.org/news/create-a-discord-bot-with-python/)
+- Custom status that changes every five minutes
+- Retrieve and send quotes from api [source link](https://www.freecodecamp.org/news/create-a-discord-bot-with-python/)
+- Retrieve and send advice quotes from public api (made by me)
+- Retrieve and send biryani pictures from public api (made by me)
+- Retrieve fortune cookie quote and lucky numbers from local file (made by me) [quotes scraped using powershell script I made](https://github.com/yfp-c/Powershell-Fun-/blob/main/Web%20scraping/Scrape_fortunecookie_quotes.ps1)
 - Bot sends message upon joining server
-- Various commands to send embedded messages
-- Send message at certain time every day
+- Various commands to send embedded messages with gifs
+- Send message at certain time every day or on a certain day of the week
 - Scan for specific words, responding in return
-- Scan for specific user, responding in return
+- Scan for specific user, responding in return with cooldown so user is not spammed whenever they send a message in channel

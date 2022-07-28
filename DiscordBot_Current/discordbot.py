@@ -43,7 +43,13 @@ async def unload(ctx, extension):
 @commands.is_owner()
 async def reload(ctx, extension):
     await bot.reload_extension(f"cogs.{extension}")
-    await ctx.send("Reloaded cog!")    
+    await ctx.send("Reloaded cog!")   
+
+@bot.event
+async def on_command_error(ctx, exception):
+    if isinstance(exception, commands.CommandOnCooldown):
+        msg = ('This command is ratelimited, please try again in {:.2f} seconds.'.format(exception.retry_after))
+        await ctx.send(msg)
 
 CHANNEL_TEST=963059358118346806
 CHANNEL_JaLaLo=666030222717485076

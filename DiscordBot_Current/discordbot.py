@@ -27,18 +27,36 @@ async def load_extensions():
 
   print(initial_extensions)
 
+@bot.command()
+@commands.is_owner()
+async def load(ctx, extension):
+    await bot.load_extension(f"cogs.{extension}")
+    await ctx.send("Loaded cog!")
+
+@bot.command()
+@commands.is_owner()
+async def unload(ctx, extension):
+    await bot.unload_extension(f"cogs.{extension}")
+    await ctx.send("Unloaded cog!")
+
+@bot.command()
+@commands.is_owner()
+async def reload(ctx, extension):
+    await bot.reload_extension(f"cogs.{extension}")
+    await ctx.send("Reloaded cog!")    
+
 CHANNEL_TEST=963059358118346806
 CHANNEL_JaLaLo=666030222717485076
 CHANNEL_SPARTA=958316995156267068
 
-# async def test_channel_gm():
-#     role = "<@&992408786969038879>"
-#     good_morning = bot.get_channel(CHANNEL_TEST)
-#     timestamp = datetime.now()
-#     UK = pytz.timezone('Europe/London')
-#     reaction_thumbs_up = '👍'
-#     gm = await good_morning.send(f"Gooood morning {role}! Today is the {timestamp.astimezone(UK).strftime('%dth of %B, %Y')}. Don't forget your **timesheets!**")
-#     await gm.add_reaction(reaction_thumbs_up)
+async def test_channel_gm():
+    role = "<@&992408786969038879>"
+    good_morning = bot.get_channel(CHANNEL_TEST)
+    timestamp = datetime.now()
+    UK = pytz.timezone('Europe/London')
+    reaction_thumbs_up = '👍'
+    gm = await good_morning.send(f"Gooood morning {role}! Today is the {timestamp.astimezone(UK).strftime('%dth of %B, %Y')}. Don't forget your **timesheets!**")
+    await gm.add_reaction(reaction_thumbs_up)
 
 async def JaLaLo_gm():
     good_morning = bot.get_channel(CHANNEL_JaLaLo)
@@ -72,10 +90,10 @@ async def on_guild_join(guild):
 @bot.event
 async def on_ready():
     scheduler = AsyncIOScheduler()   
-    # scheduler.add_job(test_channel_gm, CronTrigger.from_crontab("* * * * *"))     
-    # scheduler.add_job(JaLaLo_gm, CronTrigger.from_crontab("00 23 * * *")) # malay time
-    # scheduler.add_job(sparta_channel_gm, CronTrigger.from_crontab("00 08 * * 1-5"))
-    # scheduler.add_job(sparta_channel_timesheets, CronTrigger.from_crontab("30 09 * * 5"))
+    scheduler.add_job(test_channel_gm, CronTrigger(day_of_week="sat-sun", hour="12", minute="0"))     
+    # scheduler.add_job(JaLaLo_gm, CronTrigger(day_of_week="mon-fri", hour="23", minute="30")) # malay time
+    # scheduler.add_job(sparta_channel_gm, CronTrigger(day_of_week="mon-fri", hour="8", minute="0"))
+    # scheduler.add_job(sparta_channel_timesheets, CronTrigger(day_of_week="fri", hour="09", minute="30"))
     scheduler.start()
     await load_extensions()
 

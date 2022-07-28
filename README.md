@@ -56,3 +56,4 @@ sudo crontab -e
 - Send message at certain time every day or on a certain day of the week
 - Scan for specific words, responding in return
 - Scan for specific user, responding in return with cooldown so user is not spammed whenever they send a message in channel
+- and many more being added as per request from my friends who use my bot...

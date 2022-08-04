@@ -34,6 +34,7 @@ class embed_commands(commands.Cog):
             "- **!gl** and **@someone** to wish them good luck!\n"
             "- **!how** to say How are we doing guys?\n"
             "- **!br** to say brilliant!\n"
+            "- **!trans/!translate** [language to translate to] [text] to translate!"
             " Also team, there's a **cooldown** on my commands! **Good luck!!!!**"
         )
         embed.set_image(url=(random.choice(good_luck)))
@@ -62,24 +63,6 @@ class embed_commands(commands.Cog):
     async def hello(self, ctx):
             await ctx.reply('Hello!')
 
-
-
-    @commands.command(pass_context = True , aliases=['shah', 'shahr', 'shahru', 'shahruk'])
-    @commands.cooldown(1, 10, commands.BucketType.user)
-    async def shahrukh(self, ctx):
-        good_morning_gifs = ['https://media2.giphy.com/media/WaYIFw9ZiEn1fPcH8Y/giphy.gif?', 'https://i.pinimg.com/originals/0f/41/8a/0f418a807d4d1e40fb8428b04b86e72f.gif',
-    'https://i.pinimg.com/originals/e5/8e/30/e58e300d3a2f068314db9c567a8b2772.gif', 'https://i.pinimg.com/originals/b9/36/b3/b936b3188601b9376c72ed358dac45d8.gif',
-    'https://www.gifcen.com/wp-content/uploads/2022/02/funny-good-morning-gif-3.gif', 'https://c.tenor.com/kAaTGOhxGLYAAAAC/inosuke-demon.gif',
-    'https://c.tenor.com/kDAyvJIaw7EAAAAd/poppyseedies.gif', 'https://c.tenor.com/CFuuZZSyQUkAAAAC/good-morning-wake-up.gif',
-    'https://c.tenor.com/OH5Vd-yZHrUAAAAC/good-morning-skeleton-meme.gif', 'https://c.tenor.com/TZuZJYTomgwAAAAC/good-morning-morning.gif',
-    'https://c.tenor.com/_rp_yHj7Nn4AAAAd/good-morning.gif', 'https://c.tenor.com/yK-webGfL84AAAAC/good-morning-wishes.gif', 'https://media1.giphy.com/media/ujh2qQvMVlZflF1mPQ/giphy.gif?']
-
-        embed = discord.Embed(
-        colour=(discord.Colour.random()),
-        description=f"Goooooooood mooooooooooorninggg!!! {ctx.author.mention}"
-    )
-        embed.set_image(url=(random.choice(good_morning_gifs)))
-        await ctx.reply(embed=embed)
 
     # command tagging someone and saying brilliant!!
 

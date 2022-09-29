@@ -48,8 +48,26 @@ async def reload(ctx, extension):
 @bot.event
 async def on_command_error(ctx, exception):
     if isinstance(exception, commands.CommandOnCooldown):
-        msg = ('This command is ratelimited, please try again in {:.2f} seconds.'.format(exception.retry_after))
+
+        time = round(exception.retry_after)
+
+        hours = str(time // 3600)
+
+        minutes_calc = int(time % 3600)
+        minutes = str((time % 3600) // 60)
+
+        # seconds = time
+
+        if hours != "0":
+          msg = f"Damn you'll be waiting a while... {ctx.author.mention} {hours} hours and {minutes} minutes before you can do that command again."
+        elif hours == "0" and minutes_calc > 60:
+          msg = f"Not long to go.. {ctx.author.mention} {minutes} minutes before you can do that command again."
+        else:
+          msg = ('Slow down!!! {:.2f} seconds until you can try that command again.'.format(exception.retry_after))
         await ctx.send(msg)
+        await ctx.message.delete()
+        
+
 
 CHANNEL_TEST=963059358118346806
 CHANNEL_JaLaLo=666030222717485076

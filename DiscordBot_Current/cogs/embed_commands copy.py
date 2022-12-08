@@ -21,7 +21,6 @@ class embed_commands(commands.Cog):
             colour=(discord.Colour.random()),
             description=f" **Goooooood mooooooorning {ctx.author.name}!!!** The commands are as follows: \n"
             "- **!quote/!q** to read my wonderful quotes, \n"
-            "- **!shahrukh** to read my catchphrase, \n"
             "- **!biryani** for an image of our favourite dish, \n"
             "- **!advice** if you are feeling lost and need advice, \n"
             "- **!fc/!fortunecookie** to read your fortune and lucky numbers for today! \n"
